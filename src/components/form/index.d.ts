@@ -1,6 +1,6 @@
 import { VNode } from 'vue';
 import { RuleItem } from 'async-validator';
-import { TypeMap } from './typeMap.d.ts';
+import { TypeMap } from './typeMap.d';
 
 // 表单配置项支持的 props
 export type props = {

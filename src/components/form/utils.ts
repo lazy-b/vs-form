@@ -1,7 +1,8 @@
 // eslint-disable-next-line
 import { RuleItem } from 'async-validator';
+// import Form, { Form as FormType, CustomConfig } from './index';
 import Form from './index';
-import { Form as FormType, CustomConfig } from './index.d.ts';
+import { Form as FormType, CustomConfig } from './index.d';
 
 /**
  *判断是模板是否是函数
