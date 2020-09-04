@@ -5,12 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib ./src/components/form/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "async-validator": "^3.4.0",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },

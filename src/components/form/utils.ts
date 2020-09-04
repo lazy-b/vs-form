@@ -44,10 +44,10 @@ function computeFormItem(config: CustomConfig, form: {}, formInherit: {}) {
   // 继承为每个表单项的默认配置
   item.others = { ...def.others, ...item.others };
   // 直接使用 on 键名，如果 on 里面定义了 input 键，则会死循环
-  delete (item.others as any).on;
-  delete (item.others as any).nativeOn;
+  delete item.others.on;
+  delete item.others.nativeOn;
   // props 定义已经移到上层了
-  delete (item.others as any).props;
+  delete item.others.props;
 
   // 获取默认动态 props
   if (isFunction(def.getProps)) {

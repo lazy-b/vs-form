@@ -85,7 +85,7 @@ export type Config = {
   //   refInFor: true
   // }
   // https://cn.vuejs.org/v2/guide/render-function.html#%E6%B7%B1%E5%85%A5%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1
-  others?: {}; // 其他支持 jsx 的一些属性，如上所示，其中 on / nativeOn / props 专门移除了
+  others?: {} | any; // 其他支持 jsx 的一些属性，如上所示，其中 on / nativeOn / props 专门移除了
   getProps?: Function; // 动态计算的表单项props，合并上面的属性值进行透传
   ifRender?: Function; // 动态计算的表单项显示和隐藏，实现表单项联动
   _ifRender?: boolean; // 动态计算的表单项显示和隐藏值（用户不可直接配置该属性）
