@@ -1,39 +1,14 @@
 import { pick, keys, noop, isFunction, cloneDeep } from 'lodash';
 import Schema from 'async-validator';
 import { computeFormItem, getDescriptor } from './utils';
-import typeMap from './typeMap';
 
 const jsonCopy = val => JSON.parse(JSON.stringify(val));
 const { stringify } = JSON;
 
 const CLASS_PREFEX = 'mform';
 
-let start = 0;
-// 添加独一无二的表单项的key值
-const setItemKey = (arr = [], map) => {
-  return arr.map((item, i) => {
-    const _key = item.key || i;
-    const _componentKey = map[_key];
-    if (_componentKey) {
-      // eslint-disable-next-line
-      item.componentKey = map[_key];
-    } else {
-      // eslint-disable-next-line
-      map[_key] = `${_key}_${start++}`;
-      // eslint-disable-next-line
-      item.componentKey = map[_key];
-    }
-
-    return item;
-  });
-};
-
-let showError = null;
-
 const Form = {
   beforeCreate() {
-    this.fieldsKeyMap = {};
-
     // 使得自定义组件能够在父组件注册
     const currentComponents = this.$options.components;
     const parentComponents = this.$parent.$options.components;
@@ -186,11 +161,7 @@ const Form = {
     validateFields(cb = noop, noTips) {
       this.validator.validate(this.value, errors => {
         if (!noTips && errors && errors.length > 0) {
-          if (!showError) {
-            showError = Form.showError || noop;
-          }
-
-          showError(errors);
+          Form.showError(errors);
         }
         cb(errors, { ...this.value });
       });
@@ -214,9 +185,9 @@ const Form = {
       const cOthers = jsonCopy({ ...formInherit, disabled, readonly });
       const cForm = jsonCopy(form);
 
-      // TODO:
-      let fields = setItemKey(fieldsConfig, this.fieldsKeyMap);
-      fields = fields.map(config => computeFormItem(config, cForm, cOthers));
+      let fields = fieldsConfig.map(config =>
+        computeFormItem(config, cForm, cOthers)
+      );
 
       // 过滤不符合条件的项
       fields = fields.filter(item => item._ifRender);
@@ -233,7 +204,7 @@ const Form = {
       const {
         component,
         key,
-        componentKey,
+        itemKey,
         label,
         on = {},
         nativeOn = {},
@@ -248,17 +219,11 @@ const Form = {
         case 'slot':
           item = this.$slots[name || key];
           break;
-        case 'separate':
-          // TODO:
-          item = (
-            <div key={componentKey} class={`${CLASS_PREFEX}-separate`}></div>
-          );
-          break;
 
         default:
           item = (
             <Tag
-              key={componentKey}
+              key={itemKey || key}
               label={label}
               {...others}
               props={{ ...props }}
@@ -288,11 +253,11 @@ const Form = {
   },
 };
 
-Form.typeMap = { ...typeMap };
+Form.typeMap = {};
 Form.setTypeMap = (_typeMap = {}) => {
   Object.assign(Form.typeMap, _typeMap);
 };
 Form.defaultType = 'input';
-Form.showError = console.log;
+Form.showError = noop;
 
 export default Form;

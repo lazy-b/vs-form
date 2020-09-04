@@ -93,6 +93,7 @@ export type Config = {
 };
 
 export interface CustomConfig extends Config {
+  itemKey?: string; // 表单项绑定项的 key 没有则取下方的属性 key
   key?: string; // 表单项绑定值的属性名
   on?: Record<string, any>; // 表单项绑定的事件
   nativeOn?: Record<string, any>; // 表单项绑定的原生事件（.native 绑定的事件）
