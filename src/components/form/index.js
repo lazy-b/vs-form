@@ -238,6 +238,7 @@ const Form = {
         on = {},
         nativeOn = {},
         props,
+        others,
       } = field;
       const { name } = props;
       let item = null;
@@ -259,6 +260,7 @@ const Form = {
             <Tag
               key={componentKey}
               label={label}
+              {...others}
               props={{ ...props }}
               on={{ ...on }}
               nativeOn={{ ...nativeOn }}
