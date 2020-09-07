@@ -215,20 +215,28 @@ const Form = {
       let item = null;
       const Tag = component || 'div';
 
+      const events = {};
       switch (component) {
         case 'slot':
           item = this.$slots[name || key];
           break;
 
         default:
+          if (Object.keys(nativeOn).length > 0) {
+            events.nativeOn = nativeOn;
+          }
+          if (Object.keys(on).length > 0) {
+            events.on = on;
+          }
           item = (
             <Tag
               key={itemKey || key}
               label={label}
               {...others}
               props={{ ...props }}
-              on={{ ...on }}
-              nativeOn={{ ...nativeOn }}
+              {...events}
+              // on={{ ...on }}
+              // nativeOn={{ ...nativeOn }}
               vModel={this.form[key]}
             />
           );

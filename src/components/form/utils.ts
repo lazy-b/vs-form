@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { RuleItem } from 'async-validator';
 // import Form, { Form as FormType, CustomConfig } from './index';
 import Form from './index';
@@ -35,7 +34,8 @@ function computeFormItem(config: CustomConfig, form: {}, formInherit: {}) {
   const { typeMap, defaultType } = Form as FormType;
 
   // 对应到组件映射表
-  const def: CustomConfig = typeMap[`${type}`] || typeMap[defaultType];
+  const def: CustomConfig = typeMap[`${type}`] ||
+    typeMap[defaultType] || { component: 'div' };
 
   item.component = item.component || def.component;
   // 继承为每个表单项的默认配置
