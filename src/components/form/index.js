@@ -223,10 +223,12 @@ const Form = {
 
         default:
           if (Object.keys(nativeOn).length > 0) {
-            events.nativeOn = nativeOn;
+            // 直接赋值会导致死循环
+            events.nativeOn = { ...nativeOn };
           }
           if (Object.keys(on).length > 0) {
-            events.on = on;
+            // 直接赋值会导致死循环
+            events.on = { ...on };
           }
           item = (
             <Tag
