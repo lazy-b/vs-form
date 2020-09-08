@@ -1,11 +1,11 @@
 <template>
-  <demo-block title="带校验规则的表单">
+  <div title="带校验规则的表单">
     <m-form ref="form" v-model="form" :fields-config="fieldsConfig" />
     <div>
       <p v-if="errors.length > 0">我是错误信息</p>
       <p v-for="(err, i) in errors" :key="err + i">{{ err.message }}</p>
     </div>
-  </demo-block>
+  </div>
 </template>
 
 <script>

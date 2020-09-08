@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
-import Form from '..';
+import Form from '@/components/form';
 // import { mount, later } from '../../../test/utils';
+import FormDemo from '@/components/form/demo';
 import getFields from './baseConfig';
 
 test('fields Config', () => {
@@ -21,6 +22,12 @@ test('fields Config slot', () => {
       alreadyLeave: '<div class="alreadyLeave">1</div>',
     },
   });
-  expect(wrapper.contains('.alreadyLeave')).toBe(true);
+  expect(wrapper.get('.alreadyLeave'));
+  expect(wrapper).toMatchSnapshot();
+});
+
+test('Form demo render', () => {
+  const wrapper = mount(FormDemo);
+  expect(wrapper.get('.test'));
   expect(wrapper).toMatchSnapshot();
 });

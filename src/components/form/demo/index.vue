@@ -1,14 +1,18 @@
 <template>
-  <demo-section>
-    <demo-block title="基础用法">
+  <div>
+    <div title="基础用法">
       <m-form v-model="form" :fields-config="fieldsConfig1">
-        <div slot="alreadyLeave">我是 alreadyLeave 的slot</div>
+        <template slot="alreadyLeave">
+          <div key="alreadyLeave" class="test">sssss</div>
+          <div key="test" class="test2">sssss1</div>
+        </template>
+        <!-- <div slot="alreadyLeave">我是 alreadyLeave 的slot</div> -->
       </m-form>
-    </demo-block>
+    </div>
 
     <set-get />
     <validator-form />
-  </demo-section>
+  </div>
 </template>
 
 <script>
@@ -33,3 +37,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.test222 {
+  color: red;
+}
+.ssss {
+  color: blue;
+}
+</style>

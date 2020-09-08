@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form demo render 1`] = `
+<div>
+  <div title="基础用法">
+    <div class="mform">
+      <div class="test">sssss</div>
+      <div class="test2">sssss1</div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-cell--required van-field separate">
+        <div class="van-cell__title van-field__label"><span>请假事由</span></div>
+        <div class="van-cell__value van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-cell--center van-switch-cell testaaa">
+        <div class="van-cell__title"><span>开关</span>
+          <div class="van-cell__label">开关</div>
+        </div>
+        <div class="van-cell__value">
+          <div role="switch" aria-checked="false" class="van-switch" style="font-size: 24px;">
+            <div class="van-switch__node"></div>
+          </div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__title van-field__label"><span>多行输入</span></div>
+        <div class="van-cell__value van-field__value">
+          <div class="van-field__body"><input type="tel" class="van-field__control"></div>
+          <div class="van-field__word-limit"><span class="van-field__word-num">0</span>/50</div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-uploader">
+        <div class="van-uploader__wrapper">
+          <div class="van-uploader__upload"><i class="van-icon van-icon-photograph van-uploader__upload-icon">
+              <!---->
+            </i><input label="图片选择" type="file" accept="image/*" class="van-uploader__input"></div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell">
+        <div class="van-cell__title"><span>纯文本展示</span>
+          <div class="van-cell__label">纯文本展示</div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div title="自定义表单 set 和 get">
+    <div class="mform">
+      <div class="van-cell van-cell--required van-field">
+        <div class="van-cell__title van-field__label"><span>请假事由</span></div>
+        <div class="van-cell__value van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-cell--center van-switch-cell">
+        <div class="van-cell__title"><span>开关</span>
+          <div class="van-cell__label">开关</div>
+        </div>
+        <div class="van-cell__value">
+          <div role="switch" aria-checked="false" class="van-switch" style="font-size: 24px;">
+            <div class="van-switch__node"></div>
+          </div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell">
+        <div class="van-cell__title"><span>纯文本展示</span>
+          <div class="van-cell__label">纯文本展示</div>
+        </div>
+        <div class="van-cell__value"><span></span></div>
+      </div>
+    </div>
+    {
+    "cell": ""
+    }
+  </div>
+  <div title="带校验规则的表单">
+    <div class="mform">
+      <div class="van-cell van-cell--required van-field">
+        <div class="van-cell__title van-field__label"><span>请假事由</span></div>
+        <div class="van-cell__value van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+      <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+          <div class="van-field__body"><input type="text" class="van-field__control"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <!---->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`fields Config 1`] = `
+<div class="mform">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+</div>
+`;
+
+exports[`fields Config slot 1`] = `
+<div class="mform">
+  <div class="alreadyLeave">1</div>
+  <div class="van-cell van-cell--required van-field">
+    <div class="van-cell__title van-field__label"><span>请假事由</span></div>
+    <div class="van-cell__value van-field__value">
+      <div class="van-field__body"><input type="text" class="van-field__control"></div>
+    </div>
+  </div>
+  <div class="van-cell van-cell--center van-switch-cell">
+    <div class="van-cell__title"><span>开关</span>
+      <div class="van-cell__label">开关</div>
+    </div>
+    <div class="van-cell__value">
+      <div role="switch" aria-checked="false" class="van-switch" style="font-size: 24px;">
+        <div class="van-switch__node"></div>
+      </div>
+    </div>
+  </div>
+  <div class="van-cell van-field">
+    <div class="van-cell__title van-field__label"><span>多行输入</span></div>
+    <div class="van-cell__value van-field__value">
+      <div class="van-field__body"><textarea class="van-field__control"></textarea></div>
+      <div class="van-field__word-limit"><span class="van-field__word-num">0</span>/50</div>
+    </div>
+  </div>
+  <div class="van-uploader">
+    <div class="van-uploader__wrapper">
+      <div class="van-uploader__upload"><i class="van-icon van-icon-photograph van-uploader__upload-icon">
+          <!---->
+        </i><input label="图片选择" type="file" accept="image/*" class="van-uploader__input"></div>
+    </div>
+  </div>
+  <div class="van-cell">
+    <div class="van-cell__title"><span>纯文本展示</span>
+      <div class="van-cell__label">纯文本展示</div>
+    </div>
+  </div>
+</div>
+`;

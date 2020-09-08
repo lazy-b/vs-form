@@ -14,6 +14,9 @@ const getFields = function getFields() {
       props: {
         required: true,
       },
+      others: {
+        class: 'separate',
+      },
       // 事件绑定
       on: {
         input() {
@@ -50,6 +53,9 @@ const getFields = function getFields() {
       props: {
         title: '开关',
       },
+      others: {
+        class: 'testaaa',
+      },
     },
     {
       type: 'separate',
@@ -58,7 +64,9 @@ const getFields = function getFields() {
       label: '多行输入',
       key: 'textArea',
       type: 'textArea',
-      props: {},
+      props: {
+        type: 'tel',
+      },
     },
     {
       type: 'separate',

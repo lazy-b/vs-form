@@ -1,5 +1,5 @@
 <template>
-  <demo-block title="自定义表单 set 和 get">
+  <div title="自定义表单 set 和 get">
     <m-form
       v-model="form"
       :fields-config="fieldsConfig"
@@ -7,7 +7,7 @@
       :get-value="getValue"
     />
     {{ form }}
-  </demo-block>
+  </div>
 </template>
 
 <script>
