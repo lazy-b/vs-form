@@ -25,12 +25,13 @@ const Form = {
     const unWatchA = this.$watch('assistStr', update, { immediate: true });
     const unWatchC = this.$watch('fieldsConfig', update);
     // formValue 的取值需要等 _updateFields 运行后才能正确取值
+    // TODO:其实这里可以不用 immediate
     const unWatchF = this.$watch(
       'formValue',
       (val, oldValue) => {
         const same = stringify(val) === stringify(oldValue);
         if (same) return;
-
+        this.valueChangeCount++;
         this.$emit('input', val);
       },
       { immediate: true, deep: true }
@@ -76,6 +77,8 @@ const Form = {
       form: {},
 
       fields: [],
+
+      valueChangeCount: 0,
     };
   },
 
@@ -116,6 +119,11 @@ const Form = {
     // 给 form 赋值，只更新
     value: {
       handler(val) {
+        if (this.valueChangeCount > 0) {
+          this.valueChangeCount--;
+          return;
+        }
+
         // 如果用户定义了自定义设置值的方法，用该方法将 value 先进行转换
         const { setValue } = this;
         let value = cloneDeep(val);
@@ -124,18 +132,21 @@ const Form = {
         }
 
         const { form } = this;
-        keys(value).forEach(key => {
-          if (key in form) {
-            // 用户对form里面的引用值进行循环引用，可能导致死循环
-            const noSet =
-              form[key] === value[key] ||
-              stringify(form[key]) === stringify(value[key]);
-            if (noSet) return;
-            form[key] = value[key];
-          } else {
-            this.$set(form, key, value[key]);
-          }
-        });
+        // 由于上面 valueChangeCount 标记的作用，只有主动对 value 赋值才会触发下面的逻辑
+        // 所以可以放心直接替换值，不用再做复杂的判断
+        this.form = { ...form, ...value };
+        // keys(value).forEach(key => {
+        //   if (key in form) {
+        //     // 用户对form里面的引用值进行循环引用，可能导致死循环
+        //     const noSet =
+        //       form[key] === value[key] ||
+        //       stringify(form[key]) === stringify(value[key]);
+        //     if (noSet) return;
+        //     form[key] = value[key];
+        //   } else {
+        //     this.$set(form, key, value[key]);
+        //   }
+        // });
       },
       immediate: true,
       deep: true,
