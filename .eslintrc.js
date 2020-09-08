@@ -82,7 +82,8 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'no-underscore-dangle': 0,
-    'no-debugger': process.env.NODE_ENV === 'development' ? 0 : 2,
+    'no-debugger': process.env.NODE_ENV === 'development' ? 1 : 2,
+    // 'no-console': process.env.NODE_ENV === 'development' ? 0 : 1,
     'no-unused-expressions': [
       2,
       {

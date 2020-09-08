@@ -48,6 +48,9 @@
     "not dead"
   ],
   "jest": {
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!(@vant|vant))"
+    ],
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
   },
   "gitHooks": {
