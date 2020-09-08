@@ -2,6 +2,10 @@ import { RuleItem } from 'async-validator';
 // import Form, { Form as FormType, CustomConfig } from './index';
 import Form from './index';
 import { Form as FormType, CustomConfig } from './index.d';
+import { TypeMap } from './typeMap.d';
+
+// 内置的组件映射
+const INNER_COMPONENT: TypeMap = { slot: { component: 'slot' } };
 
 /**
  *判断是模板是否是函数
@@ -35,6 +39,7 @@ function computeFormItem(config: CustomConfig, form: {}, formInherit: {}) {
 
   // 对应到组件映射表
   const def: CustomConfig = typeMap[`${type}`] ||
+    INNER_COMPONENT[`${type}`] ||
     typeMap[defaultType] || { component: 'div' };
 
   item.component = item.component || def.component;
