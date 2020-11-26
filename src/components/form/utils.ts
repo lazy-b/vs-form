@@ -25,7 +25,7 @@ const has = (obj: {}, key: string): boolean => obj.hasOwnProperty(key);
 // 计算表单项配置
 // props 取值顺序是：typeMap.props -> item.props -> typeMap.getProps() -> item.getProps()
 // 后面对象的同名属性会覆盖前面的对象的同名属性，使用的Object.assign实现
-function computeFormItem(config: CustomConfig, form: {}, formInherit: {}) {
+function computeFormItem(config: CustomConfig, form: {}) {
   // 返回结构体
   const item: CustomConfig = { ...config };
 
@@ -44,7 +44,7 @@ function computeFormItem(config: CustomConfig, form: {}, formInherit: {}) {
 
   item.component = item.component || def.component;
   // 继承为每个表单项的默认配置
-  item.props = { ...formInherit, ...def.props, ...item.props };
+  item.props = { ...def.props, ...item.props };
 
   // 继承为每个表单项的默认配置
   item.others = { ...def.others, ...item.others };
@@ -74,11 +74,11 @@ function computeFormItem(config: CustomConfig, form: {}, formInherit: {}) {
 // 获取表单项的验证规则
 function getDescriptor(fields: Array<CustomConfig>) {
   const descriptor: { [propName: string]: RuleItem[] } = {};
-  fields.forEach(item => {
+  fields.forEach((item) => {
     const props = item.props || {};
     const rules = props.rules ? [...props.rules] : [];
     // 在 rules 中定义了 required
-    const requiredInRules = rules.some(rule => has(rule, 'required'));
+    const requiredInRules = rules.some((rule) => has(rule, 'required'));
     // 在 props 中定义了 required
     const requiredInProps = item.required || props.required;
     if (requiredInProps && !requiredInRules) {
