@@ -10,6 +10,8 @@ const CLASS_PREFEX = 'mform';
 // TODO: ui.show = false 隐藏但是保留该值
 
 const Form = {
+  name: 'VsForm',
+
   created() {
     this._setParentComponents();
   },
@@ -30,6 +32,10 @@ const Form = {
         return [];
       },
     },
+
+    // 使用当前组件的组件/页面
+    // 不一定是 this.$parent 因为可能存在组件嵌套
+    parent: {},
   },
 
   data() {
@@ -211,7 +217,7 @@ const Form = {
     _setParentComponents() {
       // 使得自定义组件能够在父组件注册
       const currentComponents = this.$options.components;
-      const parent = this._findParent();
+      const parent = this.parent || this._findParent();
       const parentComponents = parent.$options.components;
       Object.keys(parentComponents).forEach((key) => {
         if (!(key in currentComponents)) {
@@ -226,6 +232,7 @@ const Form = {
       // 如果某个 vm 对象定义的数据中，有属性值和传入的 fieldsConfig 为同一地址
       // 则该 vm 为调用当前组件的父组件
       const isTarget = (t) => {
+        // 只查找直接定义在 data 方法里面的
         const data = t.$data;
         return Object.keys(data).some((k) => data[k] === fieldsConfig);
       };
@@ -234,7 +241,8 @@ const Form = {
         p = p.$parent;
       }
 
-      return p;
+      // 可能配置是一个函数返回值，此时无法找到
+      return p || this.$parent || this;
     },
   },
 
@@ -258,5 +266,17 @@ Form.setTypeMap = (_typeMap = {}) => {
 };
 Form.defaultType = 'input';
 Form.showError = noop;
+Form.install = function install(Vue, options = {}) {
+  if (Form.installed) return;
+  Form.installed = true;
+
+  const { name, typeMap } = options;
+
+  if (typeMap) {
+    Form.setTypeMap(typeMap);
+  }
+
+  Vue.component(name || Form.name, Form);
+};
 
 export default Form;

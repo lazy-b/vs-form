@@ -40,8 +40,9 @@ function computeFormItem(config: CustomConfig, form: {}) {
   // 对应到组件映射表
   const def: CustomConfig = typeMap[`${type}`] ||
     INNER_COMPONENT[`${type}`] ||
-    typeMap[defaultType] || { component: 'div' };
+    typeMap[defaultType] || { component: type }; // 如果没有定义映射表，则使用类型作为组件名
 
+  // item 也可以直接定义 component 这样可以覆盖默认的映射
   item.component = item.component || def.component;
   // 继承为每个表单项的默认配置
   item.props = { ...def.props, ...item.props };
