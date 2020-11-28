@@ -65,8 +65,8 @@ function computeFormItem(config: CustomConfig, form: {}) {
   }
   // 条件渲染
   // eslint-disable-next-line no-underscore-dangle
-  const _if: boolean = item.ifRender ? item.ifRender({ ...form }, item) : true;
-  item._ifRender = _if;
+  const $$if: boolean = item.ifRender ? item.ifRender({ ...form }, item) : true;
+  item.$$ifRender = $$if;
 
   // form-item 配置
   return item;

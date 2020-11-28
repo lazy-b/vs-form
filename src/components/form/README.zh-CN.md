@@ -343,19 +343,19 @@ export default {
 
 ### config
 
-| 参数       | 说明                                                                             | 类型              | 默认值 |
-| ---------- | -------------------------------------------------------------------------------- | ----------------- | ------ |
-| type       | 表单项的类型                                                                     | _string_          | -      |
-| key        | 当前表单项绑定的属性名                                                           | _string_          | -      |
-| on         | 当前表单项绑定的事件（需要自行处理 this 指向）                                   | _object: {event}_ | -      |
-| nativeOn   | .native 绑定的事件                                                               | _object: {event}_ | -      |
-| component  | 表单项的标签或者表单项（可用于自定义表单项）                                     | _VNode \| string_ | -      |
-| label      | 表单项展示的 label 名                                                            | _string_          | -      |
-| required   | 表单项是否必填                                                                   | _boolean_         | -      |
-| props      | 表单项的配置参数，直接透传给对应表单项                                           | _object_          | -      |
-| getProps   | 表单项的动态参数计算方法，计算出结果后和上面的 props 合并                        | _function_        | -      |
-| ifRender   | 表单项的是否渲染计算方法，根据计算出的结果决定是否渲染表单项，表单联动的实现机制 | _function_        | -      |
-| \_ifRender | 表单项是否渲由上面方法计算出的结果                                               | _function_        | -      |
+| 参数        | 说明                                                                             | 类型              | 默认值 |
+| ----------- | -------------------------------------------------------------------------------- | ----------------- | ------ |
+| type        | 表单项的类型                                                                     | _string_          | -      |
+| key         | 当前表单项绑定的属性名                                                           | _string_          | -      |
+| on          | 当前表单项绑定的事件（需要自行处理 this 指向）                                   | _object: {event}_ | -      |
+| nativeOn    | .native 绑定的事件                                                               | _object: {event}_ | -      |
+| component   | 表单项的标签或者表单项（可用于自定义表单项）                                     | _VNode \| string_ | -      |
+| label       | 表单项展示的 label 名                                                            | _string_          | -      |
+| required    | 表单项是否必填                                                                   | _boolean_         | -      |
+| props       | 表单项的配置参数，直接透传给对应表单项                                           | _object_          | -      |
+| getProps    | 表单项的动态参数计算方法，计算出结果后和上面的 props 合并                        | _function_        | -      |
+| ifRender    | 表单项的是否渲染计算方法，根据计算出的结果决定是否渲染表单项，表单联动的实现机制 | _function_        | -      |
+| \$$ifRender | 表单项是否渲由上面方法计算出的结果                                               | _function_        | -      |
 
 > getProps({...form}, config) 的入参为：form 的当前值 和 当前表单项当时的配置值（可能前面已经被动态修改了）
 

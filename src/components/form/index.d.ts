@@ -88,7 +88,7 @@ export type Config = {
   others?: {} | any; // 其他支持 jsx 的一些属性，如上所示，其中 on / nativeOn / props 专门移除了
   getProps?: Function; // 动态计算的表单项props，合并上面的属性值进行透传
   ifRender?: Function; // 动态计算的表单项显示和隐藏，实现表单项联动
-  _ifRender?: boolean; // 动态计算的表单项显示和隐藏值（用户不可直接配置该属性）
+  $$ifRender?: boolean; // 动态计算的表单项显示和隐藏值（用户不可直接配置该属性）
   component?: VNode | string; // 本地引入的表单组件 或者 全局注册的表单项的组件名
 };
 

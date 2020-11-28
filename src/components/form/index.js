@@ -13,7 +13,7 @@ const Form = {
   name: 'VsForm',
 
   created() {
-    this._setParentComponents();
+    this.$$setParentComponents();
   },
 
   props: {
@@ -32,10 +32,6 @@ const Form = {
         return [];
       },
     },
-
-    // 使用当前组件的组件/页面
-    // 不一定是 this.$parent 因为可能存在组件嵌套
-    parent: {},
   },
 
   data() {
@@ -60,8 +56,8 @@ const Form = {
     // 暴露给外界的表单值
     formValue() {
       const { fields, form } = this;
-      const _keys = fields.map((item) => item.key).filter((key) => key);
-      const target = pick(form, _keys);
+      const $$keys = fields.map((item) => item.key).filter((key) => key);
+      const target = pick(form, $$keys);
 
       return target;
     },
@@ -85,10 +81,10 @@ const Form = {
       immediate: true,
       deep: true,
     },
-    // form 改变了，可能触发了联动规则，重新计算各项的 _ifRender
+    // form 改变了，可能触发了联动规则，重新计算各项的 $$ifRender
     form: {
       handler() {
-        this._updateFields();
+        this.$$updateFields();
       },
       immediate: true,
       deep: true,
@@ -108,7 +104,7 @@ const Form = {
     // fieldsConfig 配置发生了改变则重新计算 fields
     fieldsConfig: {
       handler() {
-        this._updateFields();
+        this.$$updateFields();
       },
       immediate: true,
       deep: true,
@@ -121,7 +117,7 @@ const Form = {
     // noTips 校验未通过的时候不弹提示 toast
     validate(noTips) {
       return new Promise((resolve, reject) => {
-        this._validateFields((err, value) => {
+        this.$$validateFields((err, value) => {
           if (!err) {
             resolve(value);
           } else {
@@ -132,7 +128,7 @@ const Form = {
     },
 
     // 校验表单
-    _validateFields(cb = noop, noTips) {
+    $$validateFields(cb = noop, noTips) {
       this.validator.validate(this.value, (errors) => {
         if (!noTips && errors && errors.length > 0) {
           Form.showError(errors);
@@ -148,11 +144,11 @@ const Form = {
 
     // 提供给外部强制刷新列表的方法
     refreshUI(force) {
-      this._updateFields(force);
+      this.$$updateFields(force);
     },
 
     // 更新表单项的配置列表
-    _updateFields(force) {
+    $$updateFields(force) {
       const { fieldsConfig, form } = this;
 
       const cForm = jsonCopy(form);
@@ -160,7 +156,7 @@ const Form = {
       let fields = fieldsConfig.map((config) => computeFormItem(config, cForm));
 
       // 过滤不符合条件的项
-      fields = fields.filter((item) => item._ifRender);
+      fields = fields.filter((item) => item.$$ifRender);
 
       if (!force && stringify(this.fields) === stringify(fields)) {
         return;
@@ -174,7 +170,7 @@ const Form = {
      * @param field 当前元素的配置信息
      * @param defProps 其他需要所有元素继承的属性
      */
-    _renderItem(field, defProps) {
+    $$renderItem(field, defProps) {
       const { component, key, itemKey, label, on = {}, nativeOn = {}, props, others } = field;
       const { name } = props;
       let item = null;
@@ -214,10 +210,10 @@ const Form = {
     },
 
     // 将父组件注册的局部组件也注册进来，方便用户使用自定义组件
-    _setParentComponents() {
+    $$setParentComponents() {
       // 使得自定义组件能够在父组件注册
       const currentComponents = this.$options.components;
-      const parent = this.parent || this._findParent();
+      const parent = this.$$getParent();
       const parentComponents = parent.$options.components;
       Object.keys(parentComponents).forEach((key) => {
         if (!(key in currentComponents)) {
@@ -225,32 +221,17 @@ const Form = {
         }
       });
     },
-    // 查找当前组件配置文件所在的组件，也就是当前组件的父组件
-    _findParent() {
-      let p = this.$parent;
-      const { fieldsConfig } = this;
-      // 如果某个 vm 对象定义的数据中，有属性值和传入的 fieldsConfig 为同一地址
-      // 则该 vm 为调用当前组件的父组件
-      const isTarget = (t) => {
-        // 只查找直接定义在 data 方法里面的
-        const data = t.$data;
-        return Object.keys(data).some((k) => data[k] === fieldsConfig);
-      };
-
-      while (p && !isTarget(p)) {
-        p = p.$parent;
-      }
-
-      // 可能配置是一个函数返回值，此时无法找到
-      return p || this.$parent || this;
+    // 得到当前组件配置文件所在的组件
+    $$getParent() {
+      return this.$vnode && this.$vnode.context;
     },
   },
 
   render() {
-    const { fields, _renderItem, $attrs = {} } = this;
+    const { fields, $$renderItem, $attrs = {} } = this;
     const { disabled, readonly } = $attrs;
     const others = { disabled, readonly };
-    const items = fields.map((field) => _renderItem(field, others));
+    const items = fields.map((field) => $$renderItem(field, others));
 
     return (
       <div class={`${CLASS_PREFEX}`} {...$attrs}>
@@ -261,8 +242,8 @@ const Form = {
 };
 
 Form.typeMap = {};
-Form.setTypeMap = (_typeMap = {}) => {
-  Object.assign(Form.typeMap, _typeMap);
+Form.setTypeMap = ($$typeMap = {}) => {
+  Object.assign(Form.typeMap, $$typeMap);
 };
 Form.defaultType = 'input';
 Form.showError = noop;
