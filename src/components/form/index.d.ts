@@ -14,8 +14,8 @@ export type props = {
 // 表单的配置中每一项的类型定义
 export type Config = {
   // key?: string; // 表单项绑定值的属性名
-  // on?: Object; // 表单项绑定的事件
-  // nativeOn?: Object; // 表单项绑定的原生事件（.native 绑定的事件）
+  on?: Record<string, any>; // 表单项绑定的事件
+  nativeOn?: Record<string, any>; // 表单项绑定的原生事件（.native 绑定的事件）
   type?: string; // 表单项的类型
   // label?: string; // 表单项的展示 label 名
   // required?: boolean; // 表单项是否必填，也可以定义在规则里面
