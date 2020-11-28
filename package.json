@@ -1,8 +1,7 @@
 {
   "name": "vs-form",
-  "version": "0.3.0",
-  "main-xxx": "dist/vs-form.common.js",
-  "main": "src/components/form/index.js",
+  "version": "0.5.0",
+  "main": "dist/vs-form.common.js",
   "module": "dist/vs-form.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
