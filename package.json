@@ -1,8 +1,20 @@
 {
   "name": "vs-form",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "main": "dist/vs-form.common.js",
   "module": "dist/vs-form.umd.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lazy-b/vs-form.git"
+  },
+  "keywords": [
+    "vue",
+    "schema",
+    "form"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
